@@ -1,5 +1,4 @@
-# School E-dairy 
-### Learn and teach effectively
+# Progressus - school edairy 
 Some humble guy once said:
 ```
 Science is the power key
