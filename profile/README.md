@@ -1,4 +1,5 @@
 # School E-dairy 
+###Learn and teach effectively
 Some humble guy once said:
 ```
 Science is the power key
