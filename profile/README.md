@@ -1,6 +1,6 @@
 # School E-dairy 
 Some humble guy once said:
-> Science is the power key
+> Science is the power key\n
 That is why we want to make the learning experience more attractive for students and help teachers organize their work.
 
 ## Authors
