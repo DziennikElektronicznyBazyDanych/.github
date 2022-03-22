@@ -1,4 +1,8 @@
 # School E-dairy 
+Some humble guy once said:
+> Science is the power key
+That is why we want to make the learning experience more attractive for students and help teachers organize their work.
+
 ## Authors
 * Ewelina Flisak
 * Piotr Socała
