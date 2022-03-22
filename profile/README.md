@@ -12,10 +12,10 @@
 * Hosting: Heroku
 
 ## Repositories
-* ![Frontend](https://github.com/DziennikElektronicznyBazyDanych/frontend)
-* ![Backend](https://github.com/DziennikElektronicznyBazyDanych/backend)
-* ![Database](https://github.com/DziennikElektronicznyBazyDanych/database)
+* [Frontend](https://github.com/DziennikElektronicznyBazyDanych/frontend)
+* [Backend](https://github.com/DziennikElektronicznyBazyDanych/backend)
+* [Database](https://github.com/DziennikElektronicznyBazyDanych/database)
 
 ## Utilities
-* ![User stories](https://github.com/DziennikElektronicznyBazyDanych/.github/blob/main/Dziennik%20elektroniczny%20-%20user%20stories.pdf)
-* ![Database diagram project](https://my.vertabelo.com/doc/YkID8TSu6WmG68v8Z5PbI19abUkssOxy)
+* [User stories](https://github.com/DziennikElektronicznyBazyDanych/.github/blob/main/Dziennik%20elektroniczny%20-%20user%20stories.pdf)
+* [Database diagram project](https://my.vertabelo.com/doc/YkID8TSu6WmG68v8Z5PbI19abUkssOxy)
