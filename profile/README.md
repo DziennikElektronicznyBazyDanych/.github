@@ -1,4 +1,4 @@
-# Progressus - school edairy 
+# Progress - school edairy 
 Some humble guy once said:
 ```
 Science is the power key
