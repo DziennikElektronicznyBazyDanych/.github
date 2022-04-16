@@ -12,7 +12,7 @@ That is why we want to make the learning experience more attractive for students
 * Arkadiusz Tyrański
 
 ## Dev stack
-* Front: React + Tailwind
+* Front: React
 * Database: Postgresql
 * Backend: NodeJs + Express.js
 * Environment: Docker
