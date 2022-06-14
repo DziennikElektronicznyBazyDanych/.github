@@ -58,15 +58,16 @@ Views
 * view_all_students_attendance
 * view_all_students_presence
 * view_all_students_absence
-view_all_classes_schedules
-view_all_teachers_courses
-view_all_lesson_instances
-view_all_students_overall_average_grades
-view_all_students_average_grades_per_course
+* view_all_classes_schedules
+* view_all_teachers_courses
+* view_all_lesson_instances
+* view_all_students_overall_average_grades
+* view_all_students_average_grades_per_course
 
 
 Procedures
 
+````
 CREATE OR REPLACE PROCEDURE proc_create_lesson(
     leading_teacher_id int, 
     class_id int, 
@@ -77,12 +78,13 @@ CREATE OR REPLACE PROCEDURE proc_create_lesson(
     end_time time, 
     year varchar(4), 
     semester bit)
-    
+````
 
+````
 CREATE OR REPLACE PROCEDURE proc_add_classroom(
     room_name varchar(4), 
     size smallint)
-
+````
 
 CREATE OR REPLACE PROCEDURE proc_add_test(
     lesson_instance_id int, 
