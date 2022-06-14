@@ -15,6 +15,7 @@ That is why we want to make the learning experience more attractive for students
 * Front: React
 * Database: Postgresql
 * Backend: NodeJs + Express.js
+* Endpoint testing: Postman
 
 ## Repositories
 * [Frontend](https://github.com/DziennikElektronicznyBazyDanych/frontend)
