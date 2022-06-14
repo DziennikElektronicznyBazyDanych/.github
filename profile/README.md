@@ -15,8 +15,6 @@ That is why we want to make the learning experience more attractive for students
 * Front: React
 * Database: Postgresql
 * Backend: NodeJs + Express.js
-* Environment: Docker
-* Hosting: Heroku
 
 ## Repositories
 * [Frontend](https://github.com/DziennikElektronicznyBazyDanych/frontend)
