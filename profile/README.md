@@ -52,6 +52,478 @@ That is why we want to make the learning experience more attractive for students
 ![image](https://user-images.githubusercontent.com/72259657/173592000-f572f913-285b-4e1b-a203-c81c75699df9.png)
 
 ## Database views, procedures and functions
+
+Views
+view_all_students_attendance
+view_all_students_presence
+view_all_students_absence
+view_all_classes_schedules
+view_all_teachers_courses
+view_all_lesson_instances
+view_all_students_overall_average_grades
+view_all_students_average_grades_per_course
+
+
+Procedures
+
+CREATE OR REPLACE PROCEDURE proc_create_lesson(
+    leading_teacher_id int, 
+    class_id int, 
+    course_id int, 
+    day_id int,
+    classroom_id int, 
+    start_time time, 
+    end_time time, 
+    year varchar(4), 
+    semester bit)
+    
+
+CREATE OR REPLACE PROCEDURE proc_add_classroom(
+    room_name varchar(4), 
+    size smallint)
+
+
+CREATE OR REPLACE PROCEDURE proc_add_test(
+    lesson_instance_id int, 
+    material_scope varchar(200), 
+    test_weight int)
+    
+
+CREATE OR REPLACE PROCEDURE proc_generate_lessons_instances(
+    date_from DATE, 
+    date_to DATE, 
+    semester BIT(1),
+	day_id INTEGER,
+	lesson_id INTEGER,
+	teacher_id INTEGER,
+	classroom_id INTEGER
+)
+
+
+CREATE OR REPLACE PROCEDURE proc_create_class(
+	class_teacher INTEGER,
+	class_name VARCHAR(2)
+)
+
+
+CREATE OR REPLACE PROCEDURE proc_create_student()
+
+
+CREATE OR REPLACE PROCEDURE proc_create_teacher()
+
+
+CREATE OR REPLACE PROCEDURE proc_add_student_to_class(
+	student_id INTEGER, 
+	class_id INTEGER
+)
+
+
+CREATE OR REPLACE PROCEDURE proc_create_course(
+	course_name VARCHAR(50)
+)
+
+
+CREATE OR REPLACE PROCEDURE proc_edit_classroom(
+    IN classroom_id integer, 
+    IN room_name character varying, 
+    IN size integer)
+
+CREATE OR REPLACE PROCEDURE proc_edit_latecoming(
+    IN lessoninstanceid integer, 
+    IN studentid integer, 
+    IN waslate boolean)
+
+CREATE OR REPLACE PROCEDURE proc_edit_test(
+    IN testid integer, 
+    IN lessoninstanceid integer, 
+    IN materialscope character varying, 
+    IN testweight integer)
+
+
+CREATE OR REPLACE PROCEDURE proc_excuse_absence(
+    IN lesson_instance_id integer, 
+    IN student_id integer, 
+    IN excuse_contents character varying)
+
+
+CREATE OR REPLACE PROCEDURE proc_promotestudents()
+
+
+
+Functions
+
+CREATE OR REPLACE FUNCTION func_lesson_student_attendance(
+    student_id int,
+    lesson_instance_id int
+) 
+RETURNS TABLE (
+    was_present bool
+) 
+
+CREATE OR REPLACE FUNCTION func_add_absence(
+    in_lesson_instance_id int,
+    in_student_id int
+) 
+RETURNS TABLE(
+    success int
+) 
+
+CREATE OR REPLACE FUNCTION func_add_attendance(
+    in_lesson_instance_id int,
+    in_student_id int
+) 
+RETURNS TABLE(
+    success int
+) 
+
+CREATE OR REPLACE FUNCTION func_edit_grade(
+    grade_id int,
+    lesson_instance_id int,
+    grade_value int,
+    grade_type int,
+    weight int,
+    description varchar(40)
+) 
+RETURNS TABLE (
+    success int
+) 
+
+CREATE OR REPLACE FUNCTION func_delete_grade(
+    grade_id int
+) 
+RETURNS TABLE (
+    success int
+) 
+
+CREATE OR REPLACE FUNCTION func_add_grade(
+    lesson_instance_id int,
+    student_id int,
+    grade int,
+    grade_type int,
+    weight int,
+    description varchar(40)
+) 
+RETURNS TABLE(
+    success int
+) 
+
+CREATE OR REPLACE FUNCTION func_expell_student(
+    student_id int
+) 
+RETURNS TABLE(
+    success int
+)
+CREATE OR REPLACE FUNCTION func_register
+(
+	in_first_name VARCHAR(20), 
+	in_last_name VARCHAR(50),
+    in_sex BIT(1), 
+	in_birth_date DATE, 
+	in_city VARCHAR(20), 
+	in_postal_code VARCHAR(6), 
+	in_email VARCHAR(50), 
+	in_password VARCHAR(50),
+	in_type VARCHAR(1)
+)
+RETURNS TABLE (
+	result int
+) 
+
+
+CREATE OR REPLACE FUNCTION func_get_enrolled_courses(
+    in_student_id int
+)
+RETURNS TABLE(
+    course_id   int,
+    course_name varchar(50)
+ ) 
+
+CREATE OR REPLACE FUNCTION func_get_test_for_class(
+    in_class_id int
+)
+RETURNS TABLE(
+    test_id int,
+    material_scope varchar(200),
+    test_weight int,
+    teacher_id int,
+    first_name varchar(20),
+    last_name varchar(50),
+    is_cancelled boolean,
+    lesson_date date
+) 
+
+CREATE OR REPLACE FUNCTION func_login(
+	in_email VARCHAR(50),
+	in_password VARCHAR(100)
+)
+RETURNS TABLE(
+    person_id int,
+    first_name varchar(20),
+    last_name varchar(50),
+    sex bit,
+    birth_date date,
+    city varchar(20),
+    postal_code varchar(6),
+    email varchar(50),
+    start_date date,
+    end_date date,
+    class_id int,
+    class_name varchar(2),
+    account_type varchar(1)
+)
+
+
+CREATE OR REPLACE FUNCTION func_class_schedule_between(
+    in_class_id int,
+    in_year varchar(4),
+    in_semester bit,
+    in_date_from date,
+    in_date_to date
+)
+RETURNS TABLE (
+    lesson_instance_id int,
+    lesson_id int,
+    teacher_id int,
+    first_name varchar(20),
+    last_name varchar(50),
+    course_id int,
+    course_name varchar(50),
+    day_id int,
+    day_name varchar(12),
+    classroom_id int,
+    room_name varchar(4),
+    start_time time,
+    end_time time,
+    year varchar(4),
+    semester bit,
+    is_cancelled boolean,
+    lesson_date date
+) 
+
+CREATE OR REPLACE FUNCTION func_student_absence_at_day(
+    student_id int, 
+    date date
+)
+RETURNS TABLE (
+    lesson_instance_id int, 
+    lesson_id int, 
+    course_name varchar(50)
+) 
+
+CREATE OR REPLACE FUNCTION func_student_grades_per_course(
+    in_student_id int,
+    in_year varchar(4)
+)
+RETURNS TABLE (
+    grade_id int,
+    grade smallint,
+    lesson_instance_id int,
+    lesson_date date,
+    lesson_id int,
+    course_id int,
+    course_name varchar(50),
+    grade_name varchar(30),
+    weight smallint,
+    description varchar(40)
+)
+
+
+CREATE OR REPLACE FUNCTION func_student_grades_from_course(
+    student_id int, 
+    course_id int
+)
+RETURNS TABLE (
+    grade_id int, 
+    grade smallint, 
+    lesson_instance_id int, 
+    lesson_date date, 
+    lesson_id int,
+    grade_name varchar(30), 
+    weight smallint, 
+    description varchar(40)
+) 
+
+CREATE OR REPLACE FUNCTION func_student_attendance_all(
+	in_student_id INT,
+	year varchar(4),
+	semester bit
+) 
+RETURNS TABLE (
+    success int,
+    presence int,
+    absence int
+) 
+
+CREATE OR REPLACE FUNCTION func_student_attendance_at_day(
+	in_student_id INTEGER,
+	in_date DATE
+)
+RETURNS TABLE (
+    student_id INTEGER, 
+    first_name VARCHAR(20), 
+    last_name VARCHAR(50), 
+    lesson_instance_id INTEGER,  
+	lesson_date DATE, 
+    lesson_id INTEGER, 
+    course_name VARCHAR(50), 
+    was_present INTEGER
+)
+
+
+CREATE OR REPLACE FUNCTION func_student_presence_all(
+	in_student_id INTEGER
+)
+RETURNS TABLE (
+    student_id INTEGER, 
+    first_name VARCHAR(20), 
+    last_name VARCHAR(50), 
+    lesson_instance_id INTEGER,  
+	lesson_date DATE, 
+    lesson_id INTEGER, 
+    course_name VARCHAR(50), 
+    was_present INTEGER
+)
+
+
+CREATE OR REPLACE FUNCTION func_student_presence_at_day(
+	in_student_id INTEGER,
+	in_date DATE
+)
+RETURNS TABLE (
+    student_id INTEGER, 
+    first_name VARCHAR(20), 
+    last_name VARCHAR(50), 
+    lesson_instance_id INTEGER,  
+	lesson_date DATE, 
+    lesson_id INTEGER, 
+    course_name VARCHAR(50), 
+    was_present INTEGER
+)
+
+
+CREATE OR REPLACE FUNCTION func_student_absence_all(
+	in_student_id INTEGER
+)
+RETURNS TABLE (
+    student_id INTEGER, 
+    first_name VARCHAR(20), 
+    last_name VARCHAR(50), 
+    lesson_instance_id INTEGER,  
+	lesson_date DATE, 
+    lesson_id INTEGER, 
+    course_name VARCHAR(50), 
+    was_present INTEGER
+)
+
+
+CREATE OR REPLACE FUNCTION is_first_name_correct(
+    first_name VARCHAR(20)
+) 
+RETURNS boolean
+
+
+CREATE OR REPLACE FUNCTION is_only_letters(
+    name VARCHAR(20)
+) 
+RETURNS boolean
+
+
+CREATE OR REPLACE FUNCTION is_postal_code(
+    name VARCHAR(6)
+) 
+RETURNS boolean
+
+
+CREATE OR REPLACE FUNCTION email_exists(
+    e_email VARCHAR(50)
+)
+RETURNS boolean
+
+
+CREATE OR REPLACE FUNCTION func_class_announced_tests(
+    class_id integer
+) 
+RETURNS TABLE(
+    test_id integer, 
+    lesson_instance_id integer, 
+    material_scope character varying, 
+    test_weight integer
+)
+
+
+CREATE OR REPLACE FUNCTION func_class_list(
+    class_id integer
+)
+RETURNS TABLE(
+    student_id integer, 
+    first_name character varying, 
+    last_name character varying, 
+    email character varying, 
+    birth_date date, 
+    city character varying, 
+    postal_code character varying, 
+    start_studying date, 
+    end_studying date
+)
+
+
+CREATE OR REPLACE FUNCTION func_class_schedule(
+    class_id int, 
+    year_param character varying, 
+    semester_param bit
+)
+RETURNS TABLE(
+    lesson_id integer, 
+    teacher_id integer, 
+    teacher_name character varying, 
+    teacher_last_name character varying, 
+    course_id integer, 
+    course_name character varying, 
+    day_name character varying, 
+    classroom_id integer, 
+    room_name character varying, 
+    start_time time without time zone, 
+    end_time time without time zone, 
+    year character varying, semester bit
+)
+
+
+CREATE OR REPLACE FUNCTION func_teacher_courses(
+    teacher_id integer
+) 
+RETURNS TABLE(
+    lesson_id integer, 
+    course_id integer, 
+    course_name character varying, 
+    class_id integer, 
+    class_name character varying
+)
+
+
+CREATE OR REPLACE FUNCTION func_teacher_schedule_between(
+    int_teacher_id int,
+    in_year varchar(4),
+    in_semester bit,
+    in_date_from date,
+    in_date_to date
+) 
+RETURNS TABLE(
+    lesson_instance_id int,
+    lesson_id int,
+    class_id int,
+    class_name varchar(2),
+    day_id int,
+    day_name varchar(12),
+    classroom_id int,
+    classroom_name varchar(4),
+    start_time time,
+    end_time time,
+    course_id int,
+    course_name varchar(50),
+    is_cancelled boolean,
+    lesson_date date
+) 
+
 ## API Endpoints
 
 # Autentykacja
