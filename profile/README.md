@@ -53,7 +53,7 @@ That is why we want to make the learning experience more attractive for students
 
 ## Database views, procedures and functions
 
-Views
+### Views
 
 * view_all_students_attendance
 * view_all_students_presence
@@ -65,7 +65,7 @@ Views
 * view_all_students_average_grades_per_course
 
 
-Procedures
+### Procedures
 
 ````
 CREATE OR REPLACE PROCEDURE proc_create_lesson(
@@ -164,14 +164,14 @@ CREATE OR REPLACE PROCEDURE proc_promotestudents()
 ````
 
 
-Functions
+### Functions
 
 ````
 CREATE OR REPLACE FUNCTION func_lesson_student_attendance(
     student_id int,
     lesson_instance_id int
 ) 
-RETURNS TABLE (
+RETURNS TABLE(
     was_present bool
 ) 
 ````
@@ -202,7 +202,7 @@ CREATE OR REPLACE FUNCTION func_edit_grade(
     weight int,
     description varchar(40)
 ) 
-RETURNS TABLE (
+RETURNS TABLE(
     success int
 ) 
 ````
@@ -210,7 +210,7 @@ RETURNS TABLE (
 CREATE OR REPLACE FUNCTION func_delete_grade(
     grade_id int
 ) 
-RETURNS TABLE (
+RETURNS TABLE(
     success int
 ) 
 ````
@@ -247,7 +247,7 @@ CREATE OR REPLACE FUNCTION func_register(
     in_password VARCHAR(50),
     in_type VARCHAR(1)
 )
-RETURNS TABLE (
+RETURNS TABLE(
     result int
 ) 
 ````
@@ -304,7 +304,7 @@ CREATE OR REPLACE FUNCTION func_class_schedule_between(
     in_date_from date,
     in_date_to date
 )
-RETURNS TABLE (
+RETURNS TABLE(
     lesson_instance_id int,
     lesson_id int,
     teacher_id int,
@@ -329,7 +329,7 @@ CREATE OR REPLACE FUNCTION func_student_absence_at_day(
     student_id int, 
     date date
 )
-RETURNS TABLE (
+RETURNS TABLE(
     lesson_instance_id int, 
     lesson_id int, 
     course_name varchar(50)
@@ -340,7 +340,7 @@ CREATE OR REPLACE FUNCTION func_student_grades_per_course(
     in_student_id int,
     in_year varchar(4)
 )
-RETURNS TABLE (
+RETURNS TABLE(
     grade_id int,
     grade smallint,
     lesson_instance_id int,
@@ -358,7 +358,7 @@ CREATE OR REPLACE FUNCTION func_student_grades_from_course(
     student_id int, 
     course_id int
 )
-RETURNS TABLE (
+RETURNS TABLE(
     grade_id int, 
     grade smallint, 
     lesson_instance_id int, 
@@ -375,7 +375,7 @@ CREATE OR REPLACE FUNCTION func_student_attendance_all(
     year varchar(4),
     semester bit
 ) 
-RETURNS TABLE (
+RETURNS TABLE(
     success int,
     presence int,
     absence int
@@ -386,7 +386,7 @@ CREATE OR REPLACE FUNCTION func_student_attendance_at_day(
     in_student_id INTEGER,
     in_date DATE
 )
-RETURNS TABLE (
+RETURNS TABLE(
     student_id INTEGER, 
     first_name VARCHAR(20), 
     last_name VARCHAR(50), 
@@ -401,7 +401,7 @@ RETURNS TABLE (
 CREATE OR REPLACE FUNCTION func_student_presence_all(
     in_student_id INTEGER
 )
-RETURNS TABLE (
+RETURNS TABLE(
     student_id INTEGER, 
     first_name VARCHAR(20), 
     last_name VARCHAR(50), 
@@ -417,7 +417,7 @@ CREATE OR REPLACE FUNCTION func_student_presence_at_day(
     in_student_id INTEGER,
     in_date DATE
 )
-RETURNS TABLE (
+RETURNS TABLE(
     student_id INTEGER, 
     first_name VARCHAR(20), 
     last_name VARCHAR(50), 
@@ -432,7 +432,7 @@ RETURNS TABLE (
 CREATE OR REPLACE FUNCTION func_student_absence_all(
     in_student_id INTEGER
 )
-RETURNS TABLE (
+RETURNS TABLE(
     student_id INTEGER, 
     first_name VARCHAR(20), 
     last_name VARCHAR(50), 
