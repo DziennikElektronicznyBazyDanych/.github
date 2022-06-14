@@ -53,9 +53,9 @@ That is why we want to make the learning experience more attractive for students
 
 ## Database views, procedures and functions
 
-Views
-view_all_students_attendance
-view_all_students_presence
+#Views
+#view_all_students_attendance
+#view_all_students_presence
 view_all_students_absence
 view_all_classes_schedules
 view_all_teachers_courses
