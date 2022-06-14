@@ -21,3 +21,5 @@ That is why we want to make the learning experience more attractive for students
 * [Frontend](https://github.com/DziennikElektronicznyBazyDanych/frontend)
 * [Backend](https://github.com/DziennikElektronicznyBazyDanych/backend)
 * [Database](https://github.com/DziennikElektronicznyBazyDanych/database)
+
+## Start
