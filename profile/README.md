@@ -53,3 +53,346 @@ That is why we want to make the learning experience more attractive for students
 
 ## Database views, procedures and functions
 ## API Endpoints
+
+# Autentykacja
+## ✔️ auth/login
+- metoda: POST
+- body:
+  - email::varchar(50),
+  - password::varchar(50)
+- output: 
+```
+{
+	person_id: number,
+	first_name: string,
+	last_name: string,
+	sex: string,
+	birth_date: date,
+	city: string,
+	postal_code: string,
+	email: string,
+	start_date: string, 	# zmiana
+	end_date: string,	# zmiana
+	class_id: number,
+	class_name: string,	# zmiana
+	account_type: string,	# zmiana
+}
+```
+- przykładowe wykorzystanie funkcji z bazy danych:
+```
+SELECT * FROM func_login('karolina_jakubowska@gmail.com', 'KarolinaJakubowska834'); 	# zmiana - logowanie studenta
+SELECT * FROM func_login('łucja_grabowska@gmail.com', 'ŁucjaGrabowska159');		# zmiana - logowanie teachera
+```
+
+- te dane nie powinny zadziałać
+```
+SELECT * FROM func_login_student('karolina_jakubowska@gmail.com', 'Alamakota1234');
+```
+## ✔️ auth/register
+- metoda: POST
+- body: 
+  - first_name::varchar(20),
+  - last_name::varchar(50),
+  - sex::bit,
+  - birth_date::date,
+  - city::varchar(20),
+  - postal_code::varchar(6), 
+  - email::varchar(50), 
+  - password::varchar(50), 
+  - type: varchar(1),
+- output: 
+```
+{	 
+	success: boolean,
+	message: string,
+}
+```
+- przykładowe wykorzystanie funkcji z bazy danych:
+```
+-- dodanie studenta
+SELECT * FROM func_register('Zenon', 'Krasicki', 0::bit, '2000-04-15', 'Kraków', '31-852', 'zenkras@gmail.com', 'zenKras1234', 'S');
+
+-- dodanie nauczyciela
+SELECT * FROM func_register('Paulina', 'Sowa', 1::bit, '1980-09-02', 'Kraków', '31-551', 'paulsow@gmail.com', 'paulSow1234', 'T');
+```
+
+# Studenta
+## ✔️ student/schedule
+- metoda: POST
+- body:
+  - class_id::int,
+  - year::varchar(4),
+  - semester::bit,
+  - date_from::date,
+  - date_to::date
+- output: 
+```
+[
+	{
+		lesson_instance_id: number,
+		lesson_id: number,
+		leading_teacher_id: number,
+		first_name: string,
+		last_name: string,
+		day_id: number,
+		day_name: string,
+		classroom_id: number,
+		classroom_name: string
+		start_time: string,
+		end_time: string,
+		course_id: number,
+		course_name: string,
+		is_cancelled: boolean,
+		lesson_date: string,
+	}
+]
+```
+- przykładowe wykorzystanie funkcji z bazy danych:
+```
+SELECT * FROM func_class_schedule_between(1,'2022',0::bit, '2022-09-05', '2022-09-09');
+```
+
+## ✔️ student/tests
+- metoda: POST
+- body:
+  - class_id::int,
+  - year::varchar(4),
+- output:
+```
+[
+  {
+    test_id: number,
+    material_scope: string,
+    test_weight: number,
+    teacher_id: number,
+    first_name: string,
+    last_name: string,
+    is_cancelled: boolean,
+    lesson_date: string
+  }
+]
+```
+
+- przykładowe wykorzystanie z bazy danych:
+```
+SELECT * FROM func_get_test_for_class(1);
+```
+
+## ✔️ grades
+- metoda: POST
+- body:
+  - student_id::int,
+  - year::varchar(4)
+- output:
+```
+[
+  {
+    course_id: number,
+    course_name: string,
+    grades: [
+    	grade_id: number,
+      lesson_instance_id: number,
+      grade: number,
+      grade_type: string,
+      weight: number,
+      description: string
+    ]
+  }
+]
+```
+
+- przykładowe wykorzystanie funkcji z bazy danych:
+```
+SELECT * FROM func_get_enrolled_courses(20);
+SELECT * FROM func_student_grades_per_course(20, '2022');
+```
+Pierwsza funkcja jest potrzebna żeby pobrać listę przedmiotów, na które dany student jest zapisany, druga po to, żeby pobrać oceny.
+
+## ✔️ student/attendance
+- metoda: POST
+- body:
+  - student_id::int,
+  - year::varchar(4)
+  - semester::bit
+- output:
+```
+ {
+    status: string,
+    presence: number, 
+    absence: number
+ }
+```
+
+- przykładowe wykorzystanie funkcji z bazy danych:
+```
+SELECT * FROM func_student_attendance_all(16::int, '2022'::varchar(4), 0::bit);
+```
+
+# Nauczyciel
+## ✔️ teacher/schedule
+- metoda: POST
+- body:
+  - teacher_id::int,
+  - year::varchar(4),
+  - semester::bit,
+  - date_from::date,
+  - date_to::date
+- output: 
+```
+[
+	{
+		lesson_instance_id: number,
+		lesson_id: number,
+		class_id: number,
+		day_id: number,
+		day_name: string,
+		classroom_id: number,
+		classroom_name: string
+		start_time: string,
+		end_time: string,
+		course_id: number,
+		course_name: string,
+		is_cancelled: boolean,
+		lesson_date: string,
+	}
+]
+```
+- przykładowe wykorzystanie funkcji z bazy danych:
+```
+SELECT * FROM func_teacher_schedule_between(1, '2022', 0::bit, '2022-09-05', '2022-09-09');
+```
+
+## ✔️ student/expell/:student_id
+- metoda: GET
+- output:
+```
+ {
+    	status: string,
+ }
+```
+
+- przykładowe wykorzystanie funkcji z bazy danych:
+```
+SELECT * FROM func_expell_student(42);
+```
+
+## ✔️ teacher/schedule/lesson
+- metoda: POST
+- body:
+  - class_id::int,
+  - course_id::int,
+  - lesson_instance_id::int,
+- output: 
+```
+{
+	status: string,
+	students: [
+		student_id: number,
+		first_name: string,
+		last_name: string,
+		attendance: string,
+		grades: [
+			grade_id: number,
+			grade: number,
+			grade_name: string,
+			weight: number,
+			lesson_date: string,
+			lesson_id: number,
+			description: string,
+		]
+	]
+}
+```
+- przykładowe wykorzystanie funkcji z bazy danych:
+```
+// Tutaj dostaniemy listę uczniów z danej klasy
+SELECT * FROM func_class_list(1); 
+
+// Tą funkcją pobieramy wszystkie oceny dla studenta o student_id=21 z kursu o course_id=1
+SELECT * FROM func_student_grades_from_course(21, 1);
+
+// Ta funkcja zwróci boola czy student o student_id=17 był obecny lub nie,
+// albo NULL'a, jak nie ma nic wpisanego na lesson_instance od lesson_instance_id=10
+SELECT * FROM func_lesson_student_attendance(17, 10);
+```
+
+## ✔️ grades/add
+- metoda: POST
+- body:
+  - lesson_instance_id::int,
+  - student_id::int,
+  - grade::int,
+  - grade_type::int,
+  - weight::int,
+  - description::varchar(40)
+- output: 
+```
+{
+	success: boolean,
+	message: string,
+}
+```
+- przykładowe wykorzystanie funkcji z bazy:
+```
+SELECT * FROM func_add_grade(30, 21, 4, 3, 2, 'Odpowiedź z równań kwadratowych');
+```
+
+## ✔️ grades/remove
+- metoda: POST
+- body:
+  - grade_id::int,
+- output: 
+```
+{
+	// -1 = >Grade of id % does not exist
+	success: boolean,
+	message: string,
+}
+```
+- przykładowe wykorzystanie funkcji z bazy:
+```
+SELECT * FROM func_delete_grade(91);
+```
+
+## ✔️ grades/edit
+- metoda: POST
+- body:
+  - grade_id::int,
+  - lesson_instance_id::int,
+  - grade_value::int,
+  - grade_type::int,
+  - weight::int,
+  - description::varchar(40)
+- output: 
+```
+{
+	success: boolean,
+	message: string,
+}
+```
+- przykładowe wykorzystanie funkcji z bazy danych:
+```
+SELECT * FROM func_edit_grade(92, 30, 2, 3, 2, 'Odpowiedź z równań kwadratowych');
+```
+## ✔️ student/attendance/add
+- metoda: POST
+- body:
+  - lesson_instance_id::int,
+  - student_id::int
+  - wasPresent::bool
+- output: 
+```
+{
+	success: boolean,
+	message: string,
+}
+```
+- przykładowe wykorzystanie funkcji z bazy danych:
+```
+// Tej funkcji użyjemy zawsze, dodaje do tabeli attendance
+SELECT * FROM func_add_attendance(7, 11);
+
+// Jeśli uczeń nie będzie obecny, dodajemy go do nieobecnych
+SELECT * FROM func_add_absence(7, 11);
+```
+
