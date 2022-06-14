@@ -22,4 +22,7 @@ That is why we want to make the learning experience more attractive for students
 * [Backend](https://github.com/DziennikElektronicznyBazyDanych/backend)
 * [Database](https://github.com/DziennikElektronicznyBazyDanych/database)
 
-## Start
+## Run application
+## Client application views
+## Database views, procedures and functions
+## API Endpoints
