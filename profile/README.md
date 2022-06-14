@@ -48,6 +48,8 @@ That is why we want to make the learning experience more attractive for students
 ![image](https://user-images.githubusercontent.com/72259657/173591420-cde1e240-cbd5-4776-baa0-6ee3fb0cf26c.png)
 ### Teacher lesson panel
 ![image](https://user-images.githubusercontent.com/72259657/173591514-3af89cc7-4a61-4b5c-a1fc-492970040ff4.png)
+### Teacher add grade modal
+![image](https://user-images.githubusercontent.com/72259657/173592000-f572f913-285b-4e1b-a203-c81c75699df9.png)
 
 ## Database views, procedures and functions
 ## API Endpoints
