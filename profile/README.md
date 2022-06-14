@@ -116,7 +116,7 @@ SELECT * FROM func_register('Zenon', 'Krasicki', 0::bit, '2000-04-15', 'Kraków'
 SELECT * FROM func_register('Paulina', 'Sowa', 1::bit, '1980-09-02', 'Kraków', '31-551', 'paulsow@gmail.com', 'paulSow1234', 'T');
 ```
 
-# Studenta
+# Student
 ## ✔️ student/schedule
 - metoda: POST
 - body:
