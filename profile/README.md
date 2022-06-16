@@ -586,17 +586,17 @@ RETURNS (
 	city: string,
 	postal_code: string,
 	email: string,
-	start_date: string, 	# zmiana
-	end_date: string,	# zmiana
+	start_date: string,
+	end_date: string,
 	class_id: number,
-	class_name: string,	# zmiana
-	account_type: string,	# zmiana
+	class_name: string,
+	account_type: string,
 }
 ```
 - przykładowe wykorzystanie funkcji z bazy danych:
 ```
-SELECT * FROM func_login('karolina_jakubowska@gmail.com', 'KarolinaJakubowska834'); 	# zmiana - logowanie studenta
-SELECT * FROM func_login('łucja_grabowska@gmail.com', 'ŁucjaGrabowska159');		# zmiana - logowanie teachera
+SELECT * FROM func_login('karolina_jakubowska@gmail.com', 'KarolinaJakubowska834'); 	# logowanie studenta
+SELECT * FROM func_login('łucja_grabowska@gmail.com', 'ŁucjaGrabowska159');		# logowanie nauczyciela
 ```
 
 - te dane nie powinny zadziałać
