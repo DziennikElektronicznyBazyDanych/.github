@@ -23,6 +23,43 @@ That is why we want to make the learning experience more attractive for students
 * [Database](https://github.com/DziennikElektronicznyBazyDanych/database)
 
 ## Run application
+1. open (or install if you don't have) pgAdmin 4, create database called 'schoolDiaryV5' for user 'postgres'
+2. open query console, copy and paste whole database [script](https://raw.githubusercontent.com/DziennikElektronicznyBazyDanych/database/main/utilities/database_script.sql?token=GHSAT0AAAAAABSFO5MXUGQU3NJ252H6TENMYVK4UMQ) and exeecute all queries
+3. if you want to use testing data then copy and paste whole [testing data] 
+(https://raw.githubusercontent.com/DziennikElektronicznyBazyDanych/database/main/utilities/testing_data.sql?token=GHSAT0AAAAAABSFO5MXJYL4H2ZNMXM7E3TYYVK4VLA)
+4. create directory for whole Progress application (ex. C:/progress-app) and open the git bash console inside this directory
+5. clone [backend repository](https://github.com/DziennikElektronicznyBazyDanych/backend) by writing following command in your git bash console:
+```
+git clone https://github.com/DziennikElektronicznyBazyDanych/backend backend-app
+```
+6. open directory 'backend-app' with VS Code
+7. open terminal (Ctrl + \`) and type following command to install all dependencies:
+```
+yarn install
+```
+8. create file called '.env' inside 'backend-app' directory, write following and replace \<password\> with your password to postgress
+```
+DB_PASSWORD=<password>
+```
+9. run server with following command:
+```
+yarn start	
+```
+10. get back to your progress directory (ex. C:/progress-app), again open the git bash console inside this directory
+11. clone [frontend repository](https://github.com/DziennikElektronicznyBazyDanych/frontend) by writing following command in your git bash console:
+```
+git clone https://github.com/DziennikElektronicznyBazyDanych/frontend frontend-app
+```
+12. open directory 'frontend-app' with VS Code
+13. open terminal (Ctrl + \`) and type following command to install all dependencies:
+```
+yarn install
+```
+14. run client app with following command:
+```
+yarn start
+```
+
 ## Client application views
 ### Login screen
 ![image](https://user-images.githubusercontent.com/72259657/173589869-a5e03860-360a-447d-ae12-398a35d8c1e8.png)
