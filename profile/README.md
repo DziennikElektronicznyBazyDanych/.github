@@ -569,8 +569,8 @@ RETURNS (
 ````
 ## API Endpoints
 
-# Autentykacja
-## ✔️ auth/login
+### Autentykacja
+#### ✔️ auth/login
 - metoda: POST
 - body:
   - email::varchar(50),
