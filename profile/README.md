@@ -603,7 +603,7 @@ SELECT * FROM func_login('łucja_grabowska@gmail.com', 'ŁucjaGrabowska159');		#
 ```
 SELECT * FROM func_login_student('karolina_jakubowska@gmail.com', 'Alamakota1234');
 ```
-## ✔️ auth/register
+#### ✔️ auth/register
 - metoda: POST
 - body: 
   - first_name::varchar(20),
@@ -631,8 +631,8 @@ SELECT * FROM func_register('Zenon', 'Krasicki', 0::bit, '2000-04-15', 'Kraków'
 SELECT * FROM func_register('Paulina', 'Sowa', 1::bit, '1980-09-02', 'Kraków', '31-551', 'paulsow@gmail.com', 'paulSow1234', 'T');
 ```
 
-# Student
-## ✔️ student/schedule
+### Student
+#### ✔️ student/schedule
 - metoda: POST
 - body:
   - class_id::int,
@@ -667,7 +667,7 @@ SELECT * FROM func_register('Paulina', 'Sowa', 1::bit, '1980-09-02', 'Kraków', 
 SELECT * FROM func_class_schedule_between(1,'2022',0::bit, '2022-09-05', '2022-09-09');
 ```
 
-## ✔️ student/tests
+#### ✔️ student/tests
 - metoda: POST
 - body:
   - class_id::int,
@@ -693,7 +693,7 @@ SELECT * FROM func_class_schedule_between(1,'2022',0::bit, '2022-09-05', '2022-0
 SELECT * FROM func_get_test_for_class(1);
 ```
 
-## ✔️ grades
+#### ✔️ grades
 - metoda: POST
 - body:
   - student_id::int,
@@ -723,7 +723,7 @@ SELECT * FROM func_student_grades_per_course(20, '2022');
 ```
 Pierwsza funkcja jest potrzebna żeby pobrać listę przedmiotów, na które dany student jest zapisany, druga po to, żeby pobrać oceny.
 
-## ✔️ student/attendance
+#### ✔️ student/attendance
 - metoda: POST
 - body:
   - student_id::int,
@@ -743,8 +743,8 @@ Pierwsza funkcja jest potrzebna żeby pobrać listę przedmiotów, na które dan
 SELECT * FROM func_student_attendance_all(16::int, '2022'::varchar(4), 0::bit);
 ```
 
-# Nauczyciel
-## ✔️ teacher/schedule
+### Nauczyciel
+#### ✔️ teacher/schedule
 - metoda: POST
 - body:
   - teacher_id::int,
@@ -777,7 +777,7 @@ SELECT * FROM func_student_attendance_all(16::int, '2022'::varchar(4), 0::bit);
 SELECT * FROM func_teacher_schedule_between(1, '2022', 0::bit, '2022-09-05', '2022-09-09');
 ```
 
-## ✔️ student/expell/:student_id
+#### ✔️ student/expell/:student_id
 - metoda: GET
 - output:
 ```
@@ -791,7 +791,7 @@ SELECT * FROM func_teacher_schedule_between(1, '2022', 0::bit, '2022-09-05', '20
 SELECT * FROM func_expell_student(42);
 ```
 
-## ✔️ teacher/schedule/lesson
+#### ✔️ teacher/schedule/lesson
 - metoda: POST
 - body:
   - class_id::int,
@@ -831,7 +831,7 @@ SELECT * FROM func_student_grades_from_course(21, 1);
 SELECT * FROM func_lesson_student_attendance(17, 10);
 ```
 
-## ✔️ grades/add
+#### ✔️ grades/add
 - metoda: POST
 - body:
   - lesson_instance_id::int,
@@ -852,7 +852,7 @@ SELECT * FROM func_lesson_student_attendance(17, 10);
 SELECT * FROM func_add_grade(30, 21, 4, 3, 2, 'Odpowiedź z równań kwadratowych');
 ```
 
-## ✔️ grades/remove
+#### ✔️ grades/remove
 - metoda: POST
 - body:
   - grade_id::int,
@@ -869,7 +869,7 @@ SELECT * FROM func_add_grade(30, 21, 4, 3, 2, 'Odpowiedź z równań kwadratowyc
 SELECT * FROM func_delete_grade(91);
 ```
 
-## ✔️ grades/edit
+#### ✔️ grades/edit
 - metoda: POST
 - body:
   - grade_id::int,
@@ -889,7 +889,7 @@ SELECT * FROM func_delete_grade(91);
 ```
 SELECT * FROM func_edit_grade(92, 30, 2, 3, 2, 'Odpowiedź z równań kwadratowych');
 ```
-## ✔️ student/attendance/add
+#### ✔️ student/attendance/add
 - metoda: POST
 - body:
   - lesson_instance_id::int,
